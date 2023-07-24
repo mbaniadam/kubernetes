@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: test
+spec:
+  selector:
+    matchLabels:
+      batch.k8s.io/name: test
+  template:
+    metadata:
+      labels:
+        batch.k8s.io/name: test
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: test
+          image: alpine:latest
+          command: ["echo", "Job in Kubernetes"]

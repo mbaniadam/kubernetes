@@ -1,0 +1,118 @@
+Kubernetes
+
+
+
+#Install k3s for test purpose
+curl -sfL https://get.k3s.io | sh -
+
+# get nodes
+kubectl get no
+kubectl get no -o wide
+
+# Autocompletion of kubectl commands bash or shell or zshell
+kubectl completion bash > /etc/bash_completion.d/kubectl
+
+# show kubeconfig file
+cat /etc/rancher/k3s/k3s.yaml
+
+# export kubeconfig file
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+
+# get api resources
+kubectl api-resources 
+
+# show options of objects
+kubectl explain pods
+kubectl explain pods.metadata
+kubectl explain pods.spec
+kubectl explain pods.spec.container
+
+# show namespaces
+kubectl get ns
+
+# apply our manifest
+kubectl apply -f pod.yml
+
+# show pods
+kubectl get pod
+kubectl get pod -o wide
+
+
+# delete pods
+kubectl delete po test
+
+# replicaset baraye HA 
+# replicaset khodesh pod haro manage mikone
+kubectl apply -f rs.yml
+
+kubectl get rs -o wide
+
+
+# scale replicaset
+kubectl scale replicaset test --replicas 10
+
+# watch commands in linux
+watch -n0.1 kubectl get rs -o wide
+
+# run command in pod
+kubectl exec test-ab8c -- nginx -v
+
+# describe replicaset
+kubectl describe rs test
+
+# ReplicaSet can't upgrade or downgrade our apps
+# For upgrade we use "Deployment" resources (Rollout & Rollback)
+
+
+# show deployment and replicaset and pods
+kubectl get deploy,rs,po
+
+# Rollback to last version
+kubectl rollout undo deployment test
+
+# show rollout history
+kubectl rollout history deployment test
+
+# check and confirm before rollout
+kubectl rollout history deployment test --revision 3
+
+# kubectl rollout undo deployment test to-revision 3
+
+
+
+------------------------------Jalase 2
+DaemonSet
+# Ejraye service dar ghaleb k8s
+
+
+# create namespaces
+kubectl create ns prometheus
+
+# show all daemonsets 
+kubectl get ds -A
+# show ds in namespaces
+kubectl -n prometheus get ds
+
+-------------
+# Statefulset for softwares like Databases
+# Priority is important
+# For sharding
+# Sharding is a method for distributing data across multiple machines
+# Storage hamishe be hamoon instance khodesh assign mishe
+
+# show sts
+kubectl get sts
+
+# show pods
+kubectl get po
+
+
+# Provision volumes dynamicly
+# Storages will not remove when delete sts
+# show storages assigned to pods
+kubectl get pvc
+
+
+-------------------------------------Job Workload
+# Onetime Tasks eg. Backup jobs
+#
