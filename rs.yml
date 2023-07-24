@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: test
+  namespace: default
+  labels:
+    app.kubernetes.io/name: test
+    app.kubernetes.io/env: development
+    app.kubernetes.io/project: test
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: test
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: test
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:alpine
+          

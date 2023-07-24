@@ -1,0 +1,15 @@
+#kubectl api-resources 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test
+  namespace: default # age nazarim ham default mishe
+  labels:
+    app.kubernetes.io/name: test
+    app.kubernetes.io/env: production
+    app.kubernetes.io/project: test
+  #annotations:
+spec:
+  containers:
+    - name: nginx
+      image: nginx:alpine
