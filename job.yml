@@ -3,6 +3,7 @@ kind: Job
 metadata:
   name: test
 spec:
+  manualSelector: true
   selector:
     matchLabels:
       batch.k8s.io/name: test
