@@ -1,4 +1,4 @@
-# Kubernetes workloads samples
+# Kubernetes workload examples
 
 Kubernetes provides several built-in workload resources:
 
